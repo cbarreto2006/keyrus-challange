@@ -4,16 +4,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  {
-  path: '',
-  component: HomeComponent,
-  children: [
-    {
-      path: 'product',
-      component: ProductComponent,
-    },
-  ],
-}];
+  { path: '',  component: HomeComponent},
+  {path: 'product/:id' , component: ProductComponent}
+];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

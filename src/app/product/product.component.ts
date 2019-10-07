@@ -1,5 +1,7 @@
+import { ProductService } from './product.service';
+import { Product } from './product.model';
 import { Component, OnInit } from '@angular/core';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  id:number;
+  product:Product = new Product();
+  htmlStr: string = '<strong>The Tortoise</strong> &amp; the Hare';
+
+  constructor( private route: ActivatedRoute,
+    private router: Router,
+    private productService: ProductService) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.id = Number(params.get("id"));
+      console.log("id========",this.id);
+      this.productService.getProductById(this.id).subscribe(
+        (data) => {
+          this.product.setProduct(data);
+          console.log("this.product========",this.product.description);
+          this.htmlStr = this.product.description;
+        // this.description=this.product.description;
+        },
+        (error) => {
+          console.log('Error: ' + error);
+      });
+  
+    })
   }
 
 }

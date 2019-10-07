@@ -3,6 +3,7 @@ import { Product } from './../product/product.model';
 import { ProductService } from './../product/product.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbSlideEvent, NgbSlideEventSource, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,9 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -84,20 +87,16 @@ export class HomeComponent implements OnInit {
   }
 
   onSlide(slideEvent: NgbSlideEvent) {
-  /*  console.log(slideEvent.source);
-    console.log(NgbSlideEventSource.ARROW_LEFT);
-    console.log(slideEvent.paused);
-    console.log(NgbSlideEventSource.INDICATOR);
-    console.log(NgbSlideEventSource.ARROW_RIGHT);*/
   }
 
   getImage(product:Product){
-    
-    //this.cheapperProduct
     var img = 'http://localhost:4301/assets/'+product.code.toString()+'.jfif';
-    console.log("this.getImage", product,img, product.imageUrl);
     return img;
   }
 
+  goDetailProduct(product:Product){
+    console.log("redirect", product);
+    this.router.navigate(['product/'+product.code], {relativeTo: this.route});
+  }
 
 }

@@ -5,6 +5,8 @@
           <div class="col-sm-4 col text-center text-primary">
              <img src="{{cheapperProduct.imageUrl}}" alt="{{cheapperProduct.code}}" >
              <h3>{{cheapperProduct.name}}</h3>
+            <button class="btn btn-block btn-primary" (click)="goDetailProduct(cheapperProduct)"  [routerLink]="['/product']"  ><i class="fa fa-search"></i> See more</button>
+            <a routerLink="product" class="nav-link" routerLinkActive="active">Detail</a>
              <h1>{{cheapperProduct.price.currencyIso}} {{cheapperProduct.price.formattedValue}}</h1>
            </div>
           <div class="col-sm-6 banner-text text-white">
@@ -32,38 +34,6 @@
   </ngb-carousel>
 </div>
 
-<div  class="carousel slide carousel-inner" >
-  <ngb-carousel (slide)="onSlide($event)" [showNavigationArrows]="true" [showNavigationIndicators]="true" 
-  interval="5000" [keyboard]="true"  [pauseOnHover]="true" [wrap]="true" [activeId]="'slideTwo'">
-    <ng-template ngbSlide id="slideOne">
-      <div class="picsum-img-wrapper">
-        <img src="images[0]"  alt="Random first slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide id="slideTwo">
-      <div class="picsum-img-wrapper">
-        <img [src]="images[1]" alt="Random second slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide id="slideThree">
-      <div class="picsum-img-wrapper">
-        <img [src]="images[2]" alt="Random third slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
-</div>
 
 <div class="row"  >
 
@@ -86,103 +56,3 @@
 
 </div>
 
-<div class="row ">
-
-  <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="../../assets/445812.jfif" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="#">Item One</a>
-        </h4>
-        <h5>$24.99</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="#">Item Two</a>
-        </h4>
-        <h5>$24.99</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="#">Item Three</a>
-        </h4>
-        <h5>$24.99</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="#">Item Four</a>
-        </h4>
-        <h5>$24.99</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="#">Item Five</a>
-        </h4>
-        <h5>$24.99</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 mb-4">
-    <div class="card h-100">
-      <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-      <div class="card-body">
-        <h4 class="card-title">
-          <a href="#">Item Six</a>
-        </h4>
-        <h5>$24.99</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-      </div>
-    </div>
-  </div>
-
-</div>
-<!-- /.row -->
