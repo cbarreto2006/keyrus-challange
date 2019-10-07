@@ -5,8 +5,8 @@
           <div class="col-sm-4 col text-center text-primary">
              <img src="{{cheapperProduct.imageUrl}}" alt="{{cheapperProduct.code}}" >
              <h3>{{cheapperProduct.name}}</h3>
-            <button class="btn btn-block btn-primary" (click)="goDetailProduct(cheapperProduct)"  [routerLink]="['/product']"  ><i class="fa fa-search"></i> See more</button>
-            <a routerLink="product" class="nav-link" routerLinkActive="active">Detail</a>
+            <button class="btn btn-warning ml-5" (click)="goDetailProduct(cheapperProduct)"  [routerLink]="['/product/']"  ><i class="fa fa-search"></i> See more</button>
+            <button class="btn btn-primary ml-5" (click)="buyProduct(product)"  [routerLink]="['/product/']"  ><i class="fas fa-cart-plus"></i> Add to cart</button>
              <h1>{{cheapperProduct.price.currencyIso}} {{cheapperProduct.price.formattedValue}}</h1>
            </div>
           <div class="col-sm-6 banner-text text-white">
@@ -40,13 +40,17 @@
 
   <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of listProducts; let i = index">
     <div class="card h-100">
-      <img class="card-img-top" src="{{getImage(product)}}" alt="{{product.code}}" >
+      <div class="center text-center" style="min-height: 210px;">
+        <img class="card-img-top center" style="max-height: 210px; max-width: 210px;" src="{{getImage(product)}}" alt="{{product.code}}" >
+      </div>
       <div class="card-body">
         <h4 class="card-title">
           <a href="#">{{product.name}}</a>
         </h4>
         <h5>{{product.price.currencyIso}} {{product.price.formattedValue}}</h5>
         <p class="card-text">{{product.summary}}</p>
+        
+        <button [hidden]="!isToSell(product)" class="btn btn-primary ml-5" (click)="buyProduct(product)"  [routerLink]="['/product/']"  ><i class="fas fa-cart-plus"></i> Add to cart</button>
       </div>
       <div class="card-footer">
         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

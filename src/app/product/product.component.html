@@ -29,11 +29,13 @@
               <div class="card-body">
                 <div [innerHTML]="product.description"></div>
                 <hr>
-                <a href="#" class="btn btn-success">Leave Product</a>
+                <a href="#" (click)="goHome()" class="btn btn-success">Leave Product</a>
+                <button class="btn btn-primary ml-5" (click)="buyProduct(product)"  [routerLink]="['/product/']"  ><i class="fas fa-cart-plus"></i> Add to cart</button>
               </div>
+              
             </div>
             <!-- /.card -->
-    
+
           </div>
           <!-- /.col-lg-9 -->
     

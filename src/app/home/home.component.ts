@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('mycarousel', {static : true}) carousel: NgbCarousel;
 
+  snapshotParam = "initial value";
+  subscribedParam = "initial value";
 
   constructor(
     private productService: ProductService,
@@ -36,6 +38,13 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         console.log('Error: ' + error);
+    });
+
+    this.snapshotParam = this.route.snapshot.paramMap.get("id");
+
+    // Subscribed
+    this.route.paramMap.subscribe(params => {
+      this.subscribedParam = params.get("id");
     });
 
     
@@ -97,6 +106,10 @@ export class HomeComponent implements OnInit {
   goDetailProduct(product:Product){
     console.log("redirect", product);
     this.router.navigate(['product/'+product.code], {relativeTo: this.route});
+  }
+
+  isToSell(product:Product){
+    return product.stock.stockLevelStatus=='inStock';
   }
 
 }

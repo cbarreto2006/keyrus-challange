@@ -35,4 +35,9 @@ export class ProductComponent implements OnInit {
     })
   }
 
+  goHome(){
+    console.log("redirect home");
+    this.router.navigate(['/'], {relativeTo: this.route});
+  }
+
 }
