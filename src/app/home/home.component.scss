@@ -9,3 +9,21 @@
     font: inherit;
     vertical-align: baseline;
 }
+
+.banner {
+    position: relative;
+    background: coral;
+    min-height: 200px;
+    background-size: cover;
+    background-position: center;
+    padding: 20px 0 20px;
+}
+
+.banner-text {
+    padding-left: 50px;
+}
+
+.gallery {
+    padding-left: 50px;
+    padding-right: 50px;
+}

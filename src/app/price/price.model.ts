@@ -10,4 +10,5 @@ export class Price{
         this.priceType = priceType;
         this.value = value;
     }
+
 }

@@ -1,6 +1,7 @@
 import { Stock } from './../stock/stock.model';
 import { Price } from './../price/price.model';
 import { Category } from '../category/category.model';
+import { $ } from 'protractor';
 
 export class Product{
 
@@ -12,9 +13,13 @@ export class Product{
     name:string;
     price:Price[] = [];
     stock:Stock;
-    imageUrl:string;
+    imageUrl:String;
+    summary:string;
 
-    constructor(product:any){
+    constructor(){};
+
+    setProduct(product:any){
+        this.imageUrl =  'http://localhost:4301/assets/'+product.code.toString()+'.jfif';
         this.availableForPickup = product.availableForPickup;
         this.code = product.code;
         this.description = product.description;
@@ -23,6 +28,7 @@ export class Product{
         this.name = product.name;
         this.price = product.price;
         this.stock = product.stock;
-        this.imageUrl = 'https://picsum.photos/900/500?random&t='+product.code;
+
+        this.summary = product.summary;
     }
 }
