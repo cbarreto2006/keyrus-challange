@@ -20,13 +20,10 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.id = Number(params.get("id"));
-      console.log("id========",this.id);
       this.productService.getProductById(this.id).subscribe(
         (data) => {
           this.product.setProduct(data);
-          console.log("this.product========",this.product.description);
           this.htmlStr = this.product.description;
-        // this.description=this.product.description;
         },
         (error) => {
           console.log('Error: ' + error);
@@ -38,6 +35,10 @@ export class ProductComponent implements OnInit {
   goHome(){
     console.log("redirect home");
     this.router.navigate(['/'], {relativeTo: this.route});
+  }
+
+  buyProduct(product:Product){
+    //todo
   }
 
 }

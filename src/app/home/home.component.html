@@ -5,8 +5,8 @@
           <div class="col-sm-4 col text-center text-primary">
              <img src="{{cheapperProduct.imageUrl}}" alt="{{cheapperProduct.code}}" >
              <h3>{{cheapperProduct.name}}</h3>
-            <button class="btn btn-warning ml-5" (click)="goDetailProduct(cheapperProduct)"  [routerLink]="['/product/']"  ><i class="fa fa-search"></i> See more</button>
-            <button class="btn btn-primary ml-5" (click)="buyProduct(product)"  [routerLink]="['/product/']"  ><i class="fas fa-cart-plus"></i> Add to cart</button>
+            <button class="btn btn-warning ml-2" (click)="goDetailProduct(cheapperProduct)"  [routerLink]="['/product/']"  ><i class="fa fa-search"></i> See more</button>
+            <button class="btn btn-primary ml-2" (click)="buyProduct(product)"  [routerLink]=""  ><i class="fas fa-cart-plus"></i> Add to cart</button>
              <h1>{{cheapperProduct.price.currencyIso}} {{cheapperProduct.price.formattedValue}}</h1>
            </div>
           <div class="col-sm-6 banner-text text-white">
@@ -18,16 +18,18 @@
 
 </section>
 
-<div  class="carousel slide carousel-inner" >
+<div  class="carousel slide carousel-inner carousel-back" >
   <ngb-carousel (slide)="onSlide($event)" [showNavigationArrows]="true" [showNavigationIndicators]="true" 
   interval="5000" [keyboard]="true"  [pauseOnHover]="true" [wrap]="true" [activeId]="'slide2'">
     <ng-template ngbSlide  *ngFor="let product of listProducts; let i = index" id="slide{{i}}" >
       <div class="picsum-img-wrapper">
-        <img src="{{getImage(product)}}" alt="slide">
+        <img src="{{getImageBanner(product)}}" alt="slide">
       </div>
       <div class="carousel-caption text-warning">
         <h3>{{product.name}}</h3>
         <p>{{product.summary}}</p>
+        <button class="btn btn-warning ml-2" (click)="goDetailProduct(product)"  [routerLink]="['/product/']"  ><i class="fas fa-search"></i> See More</button>
+        <button [hidden]="!isToSell(product)" class="btn btn-primary ml-5" (click)="buyProduct(product)"  [routerLink]=""  ><i class="fas fa-cart-plus"></i> Add to cart</button>
       </div>
     </ng-template>
    
@@ -44,13 +46,13 @@
         <img class="card-img-top center" style="max-height: 210px; max-width: 210px;" src="{{getImage(product)}}" alt="{{product.code}}" >
       </div>
       <div class="card-body">
-        <h4 class="card-title">
-          <a href="#">{{product.name}}</a>
+        <h4 class="card-title text-primary">
+          <a >{{product.name}}</a>
         </h4>
         <h5>{{product.price.currencyIso}} {{product.price.formattedValue}}</h5>
         <p class="card-text">{{product.summary}}</p>
-        
-        <button [hidden]="!isToSell(product)" class="btn btn-primary ml-5" (click)="buyProduct(product)"  [routerLink]="['/product/']"  ><i class="fas fa-cart-plus"></i> Add to cart</button>
+        <button class="btn btn-warning ml-1" (click)="goDetailProduct(product)"  [routerLink]="['/product/']"  ><i class="fas fa-search text-sm-left"></i>  See More</button>
+        <button [hidden]="!isToSell(product)" class="btn btn-primary ml-1" (click)="buyProduct(product)"  [routerLink]=""  ><i class="fas fa-cart-plus text-sm-left"></i> Add to cart</button>
       </div>
       <div class="card-footer">
         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -60,3 +62,4 @@
 
 </div>
 
+<app-footer></app-footer>

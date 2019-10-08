@@ -1,8 +1,7 @@
-import { Price } from './../price/price.model';
 import { Product } from './../product/product.model';
 import { ProductService } from './../product/product.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbSlideEvent, NgbSlideEventSource, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { NgbSlideEvent, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   
-  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
   showNavigationArrows = true;
   showNavigationIndicators = true;
   pauseOnHover = true;
@@ -32,22 +30,27 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.cheapperProduct = new Product();
-    this.productService.getAllProducts().subscribe(
-      (data) => {
-        this.setListProducts(data);
-      },
-      (error) => {
-        console.log('Error: ' + error);
-    });
-
+    this.getAllProducts();
     this.snapshotParam = this.route.snapshot.paramMap.get("id");
 
     // Subscribed
     this.route.paramMap.subscribe(params => {
       this.subscribedParam = params.get("id");
     });
+  }
 
-    
+  getAllProducts(){
+    let listProd = null;
+    this.productService.getAllProducts().subscribe(
+      (data) => {
+        listProd = data;
+        this.setListProducts(data);
+        
+      },
+      (error) => {
+        console.log('Error: ' + error);
+    });
+    return listProd;
   }
 
   setListProducts(data:any){
@@ -56,7 +59,6 @@ export class HomeComponent implements OnInit {
        return this.listProducts = [];
     }
 
- 
     // load return 
     var product:Product;
     var productCheap:Product = new Product();
@@ -103,13 +105,21 @@ export class HomeComponent implements OnInit {
     return img;
   }
 
+  getImageBanner(product:Product){
+    var img = 'http://localhost:4301/assets/'+product.code.toString()+'A.png';
+    return img;
+  }
+
   goDetailProduct(product:Product){
-    console.log("redirect", product);
     this.router.navigate(['product/'+product.code], {relativeTo: this.route});
   }
 
   isToSell(product:Product){
     return product.stock.stockLevelStatus=='inStock';
+  }
+
+  buyProduct(product:Product){
+    //todo
   }
 
 }
